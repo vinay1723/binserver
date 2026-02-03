@@ -6,10 +6,14 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://pastebin-teal.vercel.app",
+    origin: ["https://pastebin-teal.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
   })
 );
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/api", pasteRoute);
