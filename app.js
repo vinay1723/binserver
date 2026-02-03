@@ -14,6 +14,16 @@ app.use(
 
 app.options("*", cors());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://pastebin-teal.vercel.app");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,DELETE,PATCH,OPTIONS"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use(express.json());
 
 app.use("/api", pasteRoute);
